@@ -7,6 +7,10 @@ import lombok.Builder;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+import java.util.Optional;
+
+
 @Service
 @RequiredArgsConstructor
 @Builder
@@ -17,28 +21,39 @@ public class PostService {
 
 
     public PostEntity createPost(PostRequest postRequest) {
-        return PostEntity.builder()
+        PostEntity post = PostEntity.builder()
                 .title(postRequest.getTitle())
                 .content(postRequest.getContent())
                 .build();
+        postRepository.save(post);
+        return post;
     }
 
     public PostEntity updatePost(Long postId, PostRequest postRequest) {
-        PostEntity newPost = postRepository.findById(postId).orElseThrow();
+        PostEntity post = postRepository.findById(postId).orElseThrow();
+        // 수정할 제목 또는 내용이 없을 경우에는 원본이 유지된다.
+        Optional.ofNullable(postRequest.getTitle()).ifPresent(post::setTitle);
+        Optional.ofNullable(postRequest.getContent()).ifPresent(post::setContent);
 
 
-        // 원본 값을 기본으로 사용하고, DTO에서 새 값이 제공된 경우에만 업데이트
-        String updatedTitle = (postRequest.getTitle() != null && !postRequest.getTitle().isEmpty())
-                ? postRequest.getTitle()
-                : newPost.getTitle();
+        postRepository.save(post);
+        return post;
+    }
 
-        String updatedContent = (postRequest.getContent() != null && !postRequest.getContent().isEmpty())
-                ? postRequest.getContent()
-                : newPost.getContent();
+    public Optional<PostEntity> findPost(Long postId) {
+        return postRepository.findById(postId);
+    }
 
-        newPost.setTitle(updatedTitle);
-        newPost.setContent(updatedContent);
+    public Optional<List<PostEntity>> findAllPost() {
+        return Optional.of(postRepository.findAll());
+    }
 
-        return postRepository.save(newPost);
+    public void deletePost(Long postId) {
+
+        PostEntity post = postRepository.findById(postId).orElseThrow();
+
+        postRepository.delete(post);
     }
 }
+
+

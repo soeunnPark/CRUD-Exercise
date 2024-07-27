@@ -30,4 +30,4 @@ spring:
     password: '1234'
     driver-class-name: com.mysql.cj.jdbc.Driver
     username: root
-    url: jdbc:mysql://127.0.0.1:3307/crud_exercise_db
+    url: jdbc:mysql://127.0.0.1:3306/crud_exercise_db

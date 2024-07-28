@@ -94,23 +94,35 @@ Controller에서 Entity에 직접 접근하지 않는 편이 좋다.
 
 Service의 메서드의 반환값을 Optional로 감싸는 것은 좋지 않다. 만약 Entity 또는 Dto가 null을 반환한다면, 컨트롤러로 에러를 던지도록 한다.
 
-### Entity <-> Dto
+<br>
+
+- - -
+
+### 💱 Entity <-> Dto
 
 둘 다 builder로 생성
 
+<br>
 
-### Optional
+- - - 
+### 🚁 Optional
 
 Optional로 생성된 객체는 `isPresent()`를 통해 값이 있는지 여부로 확인한다. 
 값이 없는 경우 Service 계층에서 예외를 던진다. 
 
+<br>
 
-### Service 반환값
+- - -
+
+### 🥨 Service 반환값
 
 서비스 메서드는 `ResponseDto`를 반환하거나 `예외`를 던집니다. 서비스 메서드의 반환값이 `null`이 되는 일이 없도록 합니다.
 
+<br>
 
-### ExceptionHandler
+- - - 
+
+### ❗ ExceptionHandler
 
 IllegalArgumentException이 던져질 때 Spring Boot는 기본적으로 500 Internal Server Error로 응답합니다. 그러나 이 예외를 @ExceptionHandler를 사용하여 적절히 처리하면 500 오류 대신 특정한 HTTP 상태 코드(예: 401 Unauthorized)를 반환할 수 있습니다.
 

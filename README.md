@@ -4,7 +4,8 @@ CRUD 혼자 만들어보기 프로젝트
 
 - - -
 
-### @NotNull vs nullable = false
+### 🌲 @NotNull vs nullable = false
+
 
 1. DTO에서 유효성 검사를 수행하면 클라이언트로부터 받은 데이터가 서버에서 처리되기 전에 검증될 수 있습니다.
 
@@ -25,9 +26,9 @@ CRUD 혼자 만들어보기 프로젝트
 
 
 
+- - -
 
-
-### 비밀번호 해시 처리 - BCryptPasswordEncoder
+### 🛡️ 비밀번호 해시 처리 - BCryptPasswordEncoder
 
 
 1. build.gradle 파일에 Spring Security 의존성 추가
@@ -57,7 +58,9 @@ CRUD 혼자 만들어보기 프로젝트
 
 <br>
 
-### Spring Security 401에러
+- - -
+
+### ❎ Spring Security 401에러
 
 Spring Security를 사용하면 기본적으로 모든 요청에 대해 인증이 필요하게 설정되기 때문에, 인증되지 않은 사용자가 접근하려고 하면 401 에러가 발생할 수 있습니다.
 
@@ -67,8 +70,9 @@ Spring Security를 사용하면 기본적으로 모든 요청에 대해 인증�
 
 <br>
 
+- - -
 
-### Service, Controller, Entity
+### ☄️ Service, Controller, Entity
 
 
 
@@ -78,7 +82,11 @@ Controller에서 Entity에 직접 접근하지 않는 편이 좋다.
 
 `Service`에서 Dto와 Entity 사이에서 변환 과정을 거치며, Repository에 작업 내용을 반영한다.
 
-### 에러처리
+<br>
+
+- - -
+
+### ⁉️ 에러처리
 
 서비스 계층은 비즈니스 로직을 처리하고, 컨트롤러는 사용자 요청과 응답을 관리합니다. 따라서, 서비스 계층에서 문제가 발생하면 이를 컨트롤러로 전달하고, 컨트롤러는 적절한 HTTP 응답을 반환하도록 하는 것이 좋습니다.
 

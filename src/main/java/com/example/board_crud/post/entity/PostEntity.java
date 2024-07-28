@@ -20,7 +20,7 @@ public class PostEntity extends BaseTimeEntity {
 
     private String title;
 
-    @Column(columnDefinition = "TEXT")
+    @Column(nullable = true, columnDefinition = "TEXT")
     private String content;
 
 }
